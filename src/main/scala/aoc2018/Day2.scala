@@ -12,8 +12,7 @@ object Day2 extends App {
 
   val in = Source.fromResource("day2.txt").getLines().toStream
 
-  println("=== AoC - 2018 ===")
-  println(" * Day2: ")
+  println(" * Day 2: ")
 
   var twice = 0
   var threes = 0

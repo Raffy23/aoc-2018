@@ -37,8 +37,7 @@ object Day3 extends App {
     }
   }
 
-  println("=== AoC - 2018 ===")
-  println(" * Day3: ")
+  println(" * Day 3: ")
   println(s"   - Part1: ${fabric.map(_.count(_.size>=2)).sum}")
   println(s"   - Part2: ${in.filter(_.collision == false).map(_.id).toList.mkString(",")}")
 

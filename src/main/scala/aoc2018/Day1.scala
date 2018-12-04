@@ -16,8 +16,7 @@ object Day1 extends App {
   val foundFreq = new mutable.TreeSet[Int]()
   var foundDuplicate = false
 
-  println("=== AoC - 2018 ===")
-  println(" * Day1: ")
+  println(" * Day 1: ")
   println(s"   - Part 1: ${in.sum}")
   println(s"   - Part 2: ${endless.takeWhile(_ => !foundDuplicate).reduce{ (a,b) =>
     foundDuplicate = !foundFreq.add(a+b)

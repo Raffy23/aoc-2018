@@ -39,8 +39,7 @@ object Day4 extends App {
   }.sortBy(_._1)
     .map(data => (data._1.getDayOfYear, data._1.getMinute, data._2))
 
-  println("=== AoC - 2018 ===")
-  println(" * Day3: ")
+  println(" * Day 4: ")
 
   val sleepyGuards = new mutable.TreeMap[Int, Array[Int]]()
 
