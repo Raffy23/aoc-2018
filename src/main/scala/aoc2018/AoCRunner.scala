@@ -1,7 +1,5 @@
 package aoc2018
 
-import scala.io.Source
-
 /**
   * Created by 
   *
@@ -17,6 +15,7 @@ object AoCRunner extends App {
   runIfExists(2, Day2)
   runIfExists(3, Day3)
   runIfExists(4, Day4)
+  runIfExists(5, Day5)
 
   def runIfExists(day: Int, app: App): Unit = {
     if(AoCRunner.getClass.getResource(resource(day)) != null) {
