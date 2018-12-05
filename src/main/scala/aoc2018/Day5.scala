@@ -23,7 +23,7 @@ object Day5 extends App {
   def react(in: String): String = {
     val out = new ArrayBuffer[Char]
 
-    in.drop(1).foreach {
+    in.foreach {
       case a if out.isEmpty                               => out.append(a)
       case c if out.last.isUpper && c != out.last.toLower => out.append(c)
       case c if out.last.isLower && c != out.last.toUpper => out.append(c)
