@@ -1,9 +1,6 @@
 package aoc2018
 
-import java.util
-
-import scala.collection.mutable
-import scala.collection.mutable.ListBuffer
+import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
 
 /**
@@ -18,15 +15,15 @@ object Day5 extends App {
 
   println(s" * Day 4: ")
   println(s"   - Part 1: ${react(in).length}")
-  println(s"   - Part 2: ${in.toLowerCase.distinct.map { remove =>
-    react(in.replaceAll(s"$remove|${remove.toUpper}", "")).length
+  println(s"   - Part 2: ${in.toLowerCase.distinct.par.map { remove =>
+    react(in.filterNot(c => c == remove || c == remove.toUpper)).length
   }.min}")
 
 
   def react(in: String): String = {
-    val out = new ListBuffer[Char]
+    val out = new ArrayBuffer[Char]
 
-    in.foreach {
+    in.drop(1).foreach {
       case a if out.isEmpty                               => out.append(a)
       case c if out.last.isUpper && c != out.last.toLower => out.append(c)
       case c if out.last.isLower && c != out.last.toUpper => out.append(c)
