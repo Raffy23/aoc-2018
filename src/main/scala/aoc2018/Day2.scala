@@ -23,13 +23,12 @@ object Day2 extends App {
     case _ =>
   })
 
-  println(s"   - Part 1: $twice * $threes = ${twice * threes}")
-
-  val minDiff = in.map { str =>
-    val v = in.map(other => (other, str.hammingDiff(other))).filter(_._2 > 0).minBy(_._2)
+  val minDiff = in.dropRight(1).zipWithIndex.map { case (str, idx) =>
+    val v = in.drop(idx).map(other => (other, str.hammingDiff(other))).filter(_._2 > 0).minBy(_._2)
     (str, v._1, v._2)
   }.minBy(_._3)
 
+  println(s"   - Part 1: $twice * $threes = ${twice * threes}")
   println(s"   - Part 2: ${minDiff._1 intersect minDiff._2}")
 
   implicit class HammingString(val str: String) extends AnyVal {
