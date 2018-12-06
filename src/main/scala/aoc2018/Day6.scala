@@ -23,11 +23,13 @@ object Day6 extends App {
     case _ => throw new RuntimeException("Error: Input format must be: <number>, <number>")
   }
 
-  val maxX = in.map(_.x).max + 1
-  val maxY = in.map(_.y).max + 1
+  val minX = in.map(_.x).min
+  val minY = in.map(_.y).min
+  val maxX = in.map(_.x).max //+ 1
+  val maxY = in.map(_.y).max //+ 1
 
-  (0 to maxY).par.foreach { y =>
-    (0 to maxX).foreach { x =>
+  (minY to maxY).par.foreach { y =>
+    (minX to maxX).foreach { x =>
 
       val distances = in.map(point => (point, point.distance(x,y))).groupBy(_._2)
       val closestDistance = distances.keys.min
@@ -49,8 +51,8 @@ object Day6 extends App {
   val threshold = 10000
   var size = 0
 
-  (0 to maxY).foreach { y =>
-    (0 to maxX).foreach { x =>
+  (minY to maxY).foreach { y =>
+    (minX to maxX).foreach { x =>
 
       if(in.map(point => point.distance(x,y)).sum < threshold) {
         size += 1
