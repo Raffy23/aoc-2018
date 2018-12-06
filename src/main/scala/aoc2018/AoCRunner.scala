@@ -16,6 +16,7 @@ object AoCRunner extends App {
   runIfExists(3, Day3)
   runIfExists(4, Day4)
   runIfExists(5, Day5)
+  runIfExists(6, Day6)
 
   def runIfExists(day: Int, app: App): Unit = {
     if(AoCRunner.getClass.getResource(resource(day)) != null) {
