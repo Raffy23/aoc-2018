@@ -62,9 +62,6 @@ object Day7 extends App {
   val worker = Array.fill[Option[Node]](5)(None)
   var finishedConstruction = false
 
-  //val done = new ListBuffer[Char]()
-  //println("Second   Worker 1   Worker 2   Worker 3   Worker 4   Worker 5          Done")
-
   val time = Stream.from(0).takeWhile(_ => !finishedConstruction).map{ time =>
     part2_nodes
       .filter{ case (_, node) => node.canComplete }
@@ -76,29 +73,20 @@ object Day7 extends App {
           worker(worker.indexWhere(_.isEmpty)) = Some(node)
       }
 
-    //print(s"   ${time.formatted("%3d")}        ")
-    //worker.map(_.map(_.name).getOrElse('.')).foreach(c => print(s"$c          "))
-    //println(s"          ${done.mkString}")
-
-
     worker.zipWithIndex.foreach{ case (nodeOpt, idx) =>
       if(nodeOpt.isDefined && nodeOpt.get.tick() == 0) {
         val node = nodeOpt.get
 
+        node.parents.foreach(_.children.remove(node.name))
+        part2_nodes.remove(node.name)
 
-      node.parents.foreach(_.children.remove(node.name))
-      part2_nodes.remove(node.name)
-
-      //done.append(node.name)
-      worker(idx) = None
-    }
-
+        worker(idx) = None
+      }
     }
 
     finishedConstruction = part2_nodes.isEmpty && worker.count(_.nonEmpty) == 0
     time
   }.last + 1
-
 
   println(s"   - Part 2: $time")
 
