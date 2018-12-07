@@ -45,7 +45,7 @@ object Day6 extends App {
     }
   }
 
-  println(s" * Day 6: ")
+
   println(s"   - Part 1: ${in.filter(_.endless.get == false).maxBy(_.size.get).size.get}")
 
   val threshold = 10000

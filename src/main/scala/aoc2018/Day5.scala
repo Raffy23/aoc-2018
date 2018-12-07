@@ -13,7 +13,6 @@ object Day5 extends App {
 
   val in: String = Source.fromResource("day5.txt").mkString
 
-  println(s" * Day 5: ")
   println(s"   - Part 1: ${react(in).length}")
   println(s"   - Part 2: ${in.toLowerCase.distinct.par.map { remove =>
     react(in.filterNot(c => c == remove || c == remove.toUpper)).length

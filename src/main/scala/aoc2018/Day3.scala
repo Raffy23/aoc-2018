@@ -37,7 +37,6 @@ object Day3 extends App {
     }
   }
 
-  println(" * Day 3: ")
   println(s"   - Part 1: ${fabric.map(_.count(_.size>=2)).sum}")
   println(s"   - Part 2: ${in.filter(_.collision == false).map(_.id).toList.mkString(",")}")
 
