@@ -16,7 +16,9 @@ object Day7 extends App {
   case class Node(name: Char, parents: ArrayBuffer[Node], children: mutable.TreeSet[Char]) {
     def canComplete: Boolean = children.isEmpty
     def tick(): Int = { time = time - 1; time }
+
     var time: Int = 60 + (name.toInt - 'A'.toInt) + 1
+    var inProgress: Boolean = false
   }
   object Node {
     def apply(name: String): Node = new Node(name.head, new ArrayBuffer[Node](), new mutable.TreeSet())
@@ -64,12 +66,12 @@ object Day7 extends App {
 
   val time = Stream.from(0).takeWhile(_ => !finishedConstruction).map{ time =>
     part2_nodes
-      .filter{ case (_, node) => node.canComplete }
+      .filter { case (_, node) => node.canComplete && !node.inProgress}
       .toList
       .sortBy(_._1.toInt)
-      .take(worker.count(_.isEmpty) + 1)
-      .filter(target => !worker.map(_.map(_.name).getOrElse('.')).contains(target._1))
+      .take(worker.count(_.isEmpty))
       .foreach{ case (_, node) =>
+          node.inProgress = true
           worker(worker.indexWhere(_.isEmpty)) = Some(node)
       }
 
