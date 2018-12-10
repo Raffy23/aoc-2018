@@ -11,15 +11,12 @@ object AoCRunner extends App {
   def resource(day: Int): String = s"/day$day.txt"
 
   println("=== AoC - 2018 ===")
-  runIfExists(1, Day1)
-  runIfExists(2, Day2)
-  runIfExists(3, Day3)
-  runIfExists(4, Day4)
-  runIfExists(5, Day5)
-  runIfExists(6, Day6)
-  runIfExists(7, Day7)
-  runIfExists(8, Day8)
-  runIfExists(9, Day9)
+  List(
+    Day1,Day2,Day3,Day4,Day5,Day6,Day7,
+    Day8,Day9,Day10
+  ).zipWithIndex.foreach{
+    case (app, day) => runIfExists(day+1, app)
+  }
 
   def runIfExists(day: Int, app: App): Unit = {
     if(AoCRunner.getClass.getResource(resource(day)) != null) {
