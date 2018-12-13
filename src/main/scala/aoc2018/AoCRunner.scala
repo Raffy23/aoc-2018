@@ -10,10 +10,11 @@ object AoCRunner extends App {
 
   def resource(day: Int): String = s"/day$day.txt"
 
+
   println("=== AoC - 2018 ===")
   List(
     Day1,Day2,Day3,Day4,Day5,Day6,Day7,
-    Day8,Day9,Day10
+    Day8,Day9,Day10,ExpensiveComputation, ExpensiveComputation, Day13
   ).zipWithIndex.foreach{
     case (app, day) => runIfExists(day+1, app)
   }
@@ -32,6 +33,10 @@ object AoCRunner extends App {
     }
     else println(s" * Day $day: (skipping no resource found)")
 
+  }
+
+  object ExpensiveComputation extends App {
+    println("     (Skipped, very expensive computation, run explicitly!)")
   }
 
 }
